@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import "./globals.css";
 import { Nunito } from "next/font/google";
+import "./globals.css";
+import { Header } from "@/widgets/header";
 
 const nunito = Nunito({
   display: "swap",
@@ -23,7 +24,7 @@ export default function RootLayout({
     <html lang="en" className={nunito.className}>
       <body>
         <div className="flex flex-col min-h-[100vh]">
-          <header>header</header>
+          <Header />
           <main className="flex-1">{children}</main>
         </div>
       </body>
