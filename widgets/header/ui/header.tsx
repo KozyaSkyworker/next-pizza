@@ -1,31 +1,51 @@
-import { Title } from "@/shared/components";
-import { ShoppingCart } from "lucide-react";
+import { Button, Search, Title } from "@/shared/components";
+import { cn } from "@/shared/lib/utils";
+import { ArrowRight, ShoppingCart, User } from "lucide-react";
 import Image from "next/image";
 
 const Header = () => {
   return (
     <header className="border-b-[1px]">
       <div className="mx-auto max-w-[1280px]">
-        <div className="flex items-center justify-between py-[42px]">
-          <div className="flex gap-3">
-            <Image src={"/logo.png"} alt="logo" width={35} height={35} />
+        <div className="flex items-center justify-between py-[42px] gap-[40px]">
+          <div className="flex gap-3 items-center">
+            <Image
+              className="w-[35px] h-[35px]"
+              src={"/logo.png"}
+              alt="logo"
+              width={"35"}
+              height={"35"}
+            />
             <div>
-              <Title />
+              <Title
+                text={"NEXT PIZZA"}
+                className="uppercase text-xl font-black"
+              />
               <p>вкусней уже некуда</p>
             </div>
           </div>
-
-          <input
-            className="w-[764px] bg-[#F9F9F9] h-[50px]"
-            placeholder="Поиск пиццы..."
-          />
-
+          <Search className="flex-1" />
           <div className="flex gap-3">
-            <button>Войти</button>
-            <button>
-              <ShoppingCart />
-              корзина
-            </button>
+            <Button variant={"outline"}>
+              <User />
+              <span>Войти</span>
+            </Button>
+            <Button className={cn("group relative")}>
+              <b>666 ₽</b>
+              <span className="h-full w-[1px] bg-white/30 mx-3" />
+              <div className="flex items-center gap-1 transition duration-300 group-hover:opacity-0 ">
+                <ShoppingCart
+                  size={16}
+                  className="relative mr-2"
+                  strokeWidth={2}
+                />
+                <b>9</b>
+              </div>
+              <ArrowRight
+                size={20}
+                className="absolute right-5 transition duration-300 -translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0"
+              />
+            </Button>
           </div>
         </div>
       </div>
