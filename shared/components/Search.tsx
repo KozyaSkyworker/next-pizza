@@ -15,7 +15,7 @@ export const Search: FC<SearchProps> = ({ className = "" }) => {
   return (
     <div
       className={cn(
-        "flex items-center bg-gray-100 rounded-[15px] py-[14px] px-[20px] h-[50px]",
+        "flex items-center bg-gray-50 rounded-[15px] py-[14px] px-[20px] h-[50px]",
         className,
       )}
     >
