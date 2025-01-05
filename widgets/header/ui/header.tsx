@@ -1,12 +1,13 @@
 import { Button, Search, Title } from "@/shared/components";
 import { cn } from "@/shared/lib/utils";
+import { Container } from "@/widgets/container";
 import { ArrowRight, ShoppingCart, User } from "lucide-react";
 import Image from "next/image";
 
 const Header = () => {
   return (
     <header className="border-b-[1px]">
-      <div className="mx-auto max-w-[1280px]">
+      <Container>
         <div className="flex items-center justify-between py-[42px] gap-[40px]">
           <div className="flex gap-3 items-center">
             <Image
@@ -48,7 +49,7 @@ const Header = () => {
             </Button>
           </div>
         </div>
-      </div>
+      </Container>
     </header>
   );
 };
