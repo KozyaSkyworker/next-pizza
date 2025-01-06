@@ -197,9 +197,9 @@ const pizzas = [
 
 export default function Home() {
   return (
-    <Container>
-      <div className="py-[40px]">
-        <TopBar />
+    <div className="py-[40px]">
+      <TopBar />
+      <Container>
         <div className="mt-[40px] flex gap-[60px]">
           <Sidebar />
           <div className="flex-grow flex flex-col gap-[60px]">
@@ -217,7 +217,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </div>
   );
 }
