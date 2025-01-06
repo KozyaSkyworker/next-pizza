@@ -3,13 +3,14 @@ import { cn } from "@/shared/lib/utils";
 import { Container } from "@/widgets/container";
 import { ArrowRight, ShoppingCart, User } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Header = () => {
   return (
     <header className="border-b-[1px]">
       <Container>
         <div className="flex items-center justify-between py-[42px] gap-[40px]">
-          <div className="flex gap-3 items-center">
+          <Link className="flex gap-3 items-center" href={"/"}>
             <Image
               className="w-[35px] h-[35px]"
               src={"/logo.png"}
@@ -24,7 +25,7 @@ const Header = () => {
               />
               <p>вкусней уже некуда</p>
             </div>
-          </div>
+          </Link>
           <Search className="flex-1" />
           <div className="flex gap-3">
             <Button variant={"outline"}>
