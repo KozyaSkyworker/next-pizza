@@ -22,13 +22,12 @@ const TopBar = () => {
 
   useEffect(() => {
     const onWindowScroll = () => {
-      console.log(refTop?.current?.offsetTop);
-      if (refTop?.current?.offsetTop ?? 0 > 177) {
-        setStickyAtTop(true);
-      } else {
-        // TODO: не отрабатывает
-        console.log("2");
-        setStickyAtTop(false);
+      if (refTop?.current?.offsetTop) {
+        if (refTop?.current?.offsetTop > 177) {
+          setStickyAtTop(true);
+        } else {
+          setStickyAtTop(false);
+        }
       }
     };
     window.addEventListener("scroll", onWindowScroll);
