@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, ArrowRight, ShoppingCart } from "lucide-react";
+import { ArrowLeft, ArrowRight, Minus, Plus, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 
 import {
@@ -21,6 +21,7 @@ const CartDrawer = () => {
   const cart = useCartStore((state) => state);
 
   const totalItems = cart.getTotals().quantity;
+  const totalPrice = cart.getTotals().price;
 
   return (
     <Sheet>
@@ -31,7 +32,7 @@ const CartDrawer = () => {
             console.log(cart.items);
           }}
         >
-          <b>{cart.getTotals().price} ₽</b>
+          <b>{totalPrice} ₽</b>
           <span className="h-full w-[1px] bg-white/30 mx-3" />
           <div className="flex items-center gap-1 transition duration-300 group-hover:opacity-0 ">
             <ShoppingCart size={16} className="relative mr-2" strokeWidth={2} />
@@ -45,12 +46,12 @@ const CartDrawer = () => {
       </SheetTrigger>
       <SheetContent
         className={cn(
-          "flex flex-col bg-secondary justify-between",
+          "flex flex-col bg-[#F4F1EE] p-0",
           !totalItems && "justify-center bg-white",
         )}
       >
         {totalItems > 0 && (
-          <SheetHeader>
+          <SheetHeader className="p-[20px]">
             <SheetTitle>
               В корзине{" "}
               <span className="font-bold">{totalItems} ед. товара</span>
@@ -82,13 +83,55 @@ const CartDrawer = () => {
           </div>
         )}
 
-        <div>
-          <p>PIzza 1</p>
-          <p>PIzza 2</p>
-          <p>PIzza 3</p>
-        </div>
-
-        <SheetFooter>1231</SheetFooter>
+        {totalItems > 0 && (
+          <>
+            <div className="flex-grow flex flex-col gap-5 overflow-y-auto">
+              {cart.items.map((itm) => (
+                <div key={itm.id} className="flex bg-white p-[20px]">
+                  <Image
+                    className="w-[65px] h-[65px]"
+                    src={itm.img}
+                    alt={itm.name}
+                    width={"65"}
+                    height={"65"}
+                  />
+                  <div className="flex flex-col gap-[5px]">
+                    <Title variant="h5" text={itm.name} />
+                    <p>{itm.ingridients}</p>
+                    <div className="block w-full h-[1px] bg-gray-200 my-[5px]" />
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-3 items-center">
+                        <Button className="p-2 h-max" variant="outline">
+                          <Minus />
+                        </Button>
+                        <span>{itm.quantity}</span>
+                        <Button className="p-2 h-max" variant="outline">
+                          <Plus />
+                        </Button>
+                      </div>
+                      <span className="font-bold">
+                        {itm.startPrice * itm.quantity} ₽
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <SheetFooter
+              className={"bg-white p-[20px] gap-[20px] flex flex-col"}
+            >
+              <div className="flex justify-between gap-2">
+                <span>Итого:</span>
+                <div className="flex-grow w-1 h-1 border-b border-dashed border-b-neutral-200 relative -top-2 self-end" />
+                <span className="font-bold">{totalPrice} ₽</span>
+              </div>
+              <Button className="p-7">
+                Оформить заказ
+                <ArrowRight className="w-5 ml-2" />
+              </Button>
+            </SheetFooter>
+          </>
+        )}
       </SheetContent>
     </Sheet>
   );
