@@ -1,9 +1,11 @@
 "use client";
 
-import { SearchIcon, X as ClearIcon } from "lucide-react";
-import { Button, Input } from "./ui";
-import { cn } from "../lib/utils";
+import { X as ClearIcon, SearchIcon } from "lucide-react";
 import { FC, useState } from "react";
+
+import { cn } from "../lib/utils";
+
+import { Button, Input } from "./ui";
 
 interface SearchProps {
   className?: string;

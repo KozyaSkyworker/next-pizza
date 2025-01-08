@@ -1,7 +1,9 @@
-import { Title, Button } from "@/shared/components";
 import { Plus } from "lucide-react";
 import Image from "next/image";
+
 import { PizzaDTO } from "../model";
+
+import { Button, Title } from "@/shared/components";
 
 const PizzaCard = ({ data }: { data: PizzaDTO }) => {
   return (

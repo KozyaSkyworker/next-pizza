@@ -1,9 +1,11 @@
-import { Button, Search, Title } from "@/shared/components";
-import { cn } from "@/shared/lib/utils";
-import { Container } from "@/widgets/container";
 import { ArrowRight, ShoppingCart, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
+import { Container } from "@/widgets/container";
+
+import { Button, Search, Title } from "@/shared/components";
+import { cn } from "@/shared/lib/utils";
 
 const Header = () => {
   return (

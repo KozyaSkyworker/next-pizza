@@ -1,10 +1,12 @@
 "use client";
 
 import { ArrowUpDown } from "lucide-react";
-import { cn } from "../lib/utils";
 import Link from "next/link";
-import { Container } from "@/widgets/container";
 import { useEffect, useRef, useState } from "react";
+
+import { Container } from "@/widgets/container";
+
+import { cn } from "../lib/utils";
 
 // TODO: дублирование
 const categories = [
@@ -63,7 +65,7 @@ const TopBar = () => {
           {/* Сортировка */}
           <div className="flex items-center gap-[10px] bg-gray-50 w-max py-[16px] px-[22px] rounded-[15px]">
             <ArrowUpDown />
-            Сортировка по:{" "}
+            Сортировка по: {/* TODO: сделать робочей */}
             <span className="text-primary font-medium">рейтингу</span>
           </div>
         </div>
