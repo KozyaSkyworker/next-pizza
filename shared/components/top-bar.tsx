@@ -37,8 +37,6 @@ const TopBar = () => {
     return () => window.removeEventListener("scroll", onWindowScroll);
   });
 
-  console.log(refTop.current);
-
   return (
     <div
       className={cn("sticky top-0", stickyAtTop && "bg-white border-b-[1px]")}
@@ -48,6 +46,7 @@ const TopBar = () => {
         <div className="flex items-center justify-between">
           {/* Категории */}
           <div className="flex items-center bg-gray-50 rounded-[15px] w-max p-[6px]">
+            {/* TODO: сделать измение активной вкладки от /#URL */}
             {categories.map((itm) => (
               <Link
                 key={itm.id}
