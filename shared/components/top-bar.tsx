@@ -44,9 +44,8 @@ const TopBar = () => {
     >
       <Container>
         <div className="flex items-center justify-between">
-          {/* Категории */}
           <div className="flex items-center bg-gray-50 rounded-[15px] w-max p-[6px]">
-            {/* TODO: сделать измение активной вкладки от /#URL */}
+            {/* TODO: сделать измение активной вкладки от /#URL и скролла */}
             {categories.map((itm) => (
               <Link
                 key={itm.id}
@@ -61,7 +60,6 @@ const TopBar = () => {
             ))}
           </div>
 
-          {/* Сортировка */}
           <div className="flex items-center gap-[10px] bg-gray-50 w-max py-[16px] px-[22px] rounded-[15px]">
             <ArrowUpDown />
             Сортировка по: {/* TODO: сделать робочей */}

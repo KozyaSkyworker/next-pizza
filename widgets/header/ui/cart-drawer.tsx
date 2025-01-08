@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, ArrowRight, Minus, Plus, ShoppingCart } from "lucide-react";
+import { ArrowLeft, ArrowRight, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 
 import {
@@ -16,6 +16,8 @@ import {
 } from "@/shared/components";
 import { cn } from "@/shared/lib/utils";
 import { useCartStore } from "@/shared/store";
+
+import CartItem from "./cart-item";
 
 const CartDrawer = () => {
   const cart = useCartStore((state) => state);
@@ -87,34 +89,7 @@ const CartDrawer = () => {
           <>
             <div className="flex-grow flex flex-col gap-5 overflow-y-auto">
               {cart.items.map((itm) => (
-                <div key={itm.id} className="flex bg-white p-[20px]">
-                  <Image
-                    className="w-[65px] h-[65px]"
-                    src={itm.img}
-                    alt={itm.name}
-                    width={"65"}
-                    height={"65"}
-                  />
-                  <div className="flex flex-col gap-[5px]">
-                    <Title variant="h5" text={itm.name} />
-                    <p>{itm.ingridients}</p>
-                    <div className="block w-full h-[1px] bg-gray-200 my-[5px]" />
-                    <div className="flex items-center justify-between">
-                      <div className="flex gap-3 items-center">
-                        <Button className="p-2 h-max" variant="outline">
-                          <Minus />
-                        </Button>
-                        <span>{itm.quantity}</span>
-                        <Button className="p-2 h-max" variant="outline">
-                          <Plus />
-                        </Button>
-                      </div>
-                      <span className="font-bold">
-                        {itm.startPrice * itm.quantity} ₽
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                <CartItem key={itm.id} data={itm} />
               ))}
             </div>
             <SheetFooter

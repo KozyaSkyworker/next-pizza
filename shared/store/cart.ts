@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 // TODO: разрулить с PizzaDTO
-type CartItem = {
+export type CartItem = {
   id: number;
   category: number;
   name: string;
@@ -14,6 +14,8 @@ type CartItem = {
 interface CartState {
   items: CartItem[];
   getTotals: () => { price: number; quantity: number };
+  removeItem: (id: number) => void;
+  updateQuantity: (id: number, type: "plus" | "minus") => void;
   addItem: (newItem: Omit<CartItem, "quantity">) => void;
   clearCart: () => void;
 }
@@ -31,6 +33,19 @@ export const useCartStore = create<CartState>((set, get) => ({
     );
     return { price, quantity };
   },
+  removeItem: (id) =>
+    set((state) => ({ items: state.items.filter((itm) => itm.id !== id) })),
+  updateQuantity: (id, type) =>
+    set((state) => ({
+      items: state.items.map((itm) => {
+        if (itm.id === id) {
+          return type === "plus"
+            ? { ...itm, quantity: itm.quantity + 1 }
+            : { ...itm, quantity: itm.quantity - 1 };
+        }
+        return itm;
+      }),
+    })),
   addItem: (newItem) => {
     const curItems = get().items;
     const existingItem = curItems.find((itm) => itm.id === newItem.id);
