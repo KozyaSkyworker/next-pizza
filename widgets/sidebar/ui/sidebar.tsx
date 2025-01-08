@@ -1,10 +1,11 @@
-import { Title, Button } from "@/shared/components";
+import { Button, Title } from "@/shared/components";
 
 const Sidebar = () => {
   return (
     <div className="basis-[245px] flex flex-col gap-[60px]">
       <Title variant="h2" text="Фильтрация" />
 
+      {/* TODO: выветсти фильтры */}
       <div>
         <Title variant="h4" text="Тип теста:" />
       </div>

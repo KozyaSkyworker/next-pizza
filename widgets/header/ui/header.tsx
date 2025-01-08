@@ -1,11 +1,12 @@
-import { ArrowRight, ShoppingCart, User } from "lucide-react";
+import { User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 import { Container } from "@/widgets/container";
 
 import { Button, Search, Title } from "@/shared/components";
-import { cn } from "@/shared/lib/utils";
+
+import CartDrawer from "./cart-drawer";
 
 const Header = () => {
   return (
@@ -34,22 +35,7 @@ const Header = () => {
               <User />
               <span>Войти</span>
             </Button>
-            <Button className={cn("group relative")}>
-              <b>666 ₽</b>
-              <span className="h-full w-[1px] bg-white/30 mx-3" />
-              <div className="flex items-center gap-1 transition duration-300 group-hover:opacity-0 ">
-                <ShoppingCart
-                  size={16}
-                  className="relative mr-2"
-                  strokeWidth={2}
-                />
-                <b>9</b>
-              </div>
-              <ArrowRight
-                size={20}
-                className="absolute right-5 transition duration-300 -translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0"
-              />
-            </Button>
+            <CartDrawer />
           </div>
         </div>
       </Container>

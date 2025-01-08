@@ -1,11 +1,20 @@
+"use client";
+
 import { Plus } from "lucide-react";
 import Image from "next/image";
 
+import { Button, Title } from "@/shared/components";
+import { useCartStore } from "@/shared/store";
+
 import { PizzaDTO } from "../model";
 
-import { Button, Title } from "@/shared/components";
-
 const PizzaCard = ({ data }: { data: PizzaDTO }) => {
+  const addItem = useCartStore((state) => state.addItem);
+
+  const handleAddToCart = () => {
+    addItem(data);
+  };
+
   return (
     <div className="flex flex-col gap-[15px] justify-between">
       <div className="bg-secondary flex items-center justify-center rounded-[15px]">
@@ -27,7 +36,7 @@ const PizzaCard = ({ data }: { data: PizzaDTO }) => {
         <p className="text-[20px]">
           от <span className="font-bold ">{data.startPrice} ₽</span>
         </p>
-        <Button>
+        <Button variant={"secondary"} onClick={handleAddToCart}>
           <Plus />
           Добавить
         </Button>

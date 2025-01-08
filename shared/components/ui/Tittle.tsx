@@ -1,5 +1,6 @@
-import { cn } from "@/shared/lib/utils";
 import { FC } from "react";
+
+import { cn } from "@/shared/lib/utils";
 
 type Variant = "h1" | "h2" | "h3" | "h4" | "h5";
 
@@ -21,7 +22,7 @@ const mapWeight: Record<Variant, `font-${string}`> = {
   h1: `font-extrabold`,
   h2: `font-bold`,
   h3: `font-bold`,
-  h4: `font-bold`,
+  h4: `font-semibold`,
   h5: `font-bold`,
 };
 
