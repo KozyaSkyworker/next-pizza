@@ -13,16 +13,24 @@ type CartItem = {
 
 interface CartState {
   items: CartItem[];
-  getTotalPrice: () => number;
+  getTotals: () => { price: number; quantity: number };
   addItem: (newItem: Omit<CartItem, "quantity">) => void;
   clearCart: () => void;
 }
 
 export const useCartStore = create<CartState>((set, get) => ({
   items: [],
-  getTotalPrice: () =>
-    get().items.reduce((acc, cur) => acc + cur.startPrice, 0),
-  // TODO: сделать чтобы при наличии товара в корзине увеличивался его счетчик, а не добовлялся новый товар
+  getTotals: () => {
+    const { items } = get();
+    let price = 0;
+    let quantity = 0;
+    items.forEach(
+      (itm) => (
+        (price += itm.startPrice * itm.quantity), (quantity += itm.quantity)
+      ),
+    );
+    return { price, quantity };
+  },
   addItem: (newItem) => {
     const curItems = get().items;
     const existingItem = curItems.find((itm) => itm.id === newItem.id);

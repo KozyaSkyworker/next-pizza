@@ -1,19 +1,14 @@
-"use client";
-
-import { ArrowRight, ShoppingCart, User } from "lucide-react";
+import { User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 import { Container } from "@/widgets/container";
 
 import { Button, Search, Title } from "@/shared/components";
-import { cn } from "@/shared/lib/utils";
-import { useCartStore } from "@/shared/store";
+
+import CartDrawer from "./cart-drawer";
 
 const Header = () => {
-  // TODO: спустить - убрать use client в header
-  const cart = useCartStore((state) => state);
-
   return (
     <header className="border-b-[1px]">
       <Container>
@@ -40,27 +35,7 @@ const Header = () => {
               <User />
               <span>Войти</span>
             </Button>
-            <Button
-              className={cn("group relative")}
-              onClick={() => {
-                console.log(cart.items);
-              }}
-            >
-              <b>{cart.getTotalPrice()} ₽</b>
-              <span className="h-full w-[1px] bg-white/30 mx-3" />
-              <div className="flex items-center gap-1 transition duration-300 group-hover:opacity-0 ">
-                <ShoppingCart
-                  size={16}
-                  className="relative mr-2"
-                  strokeWidth={2}
-                />
-                <b>{cart.items.reduce((acc, itm) => acc + itm.quantity, 0)}</b>
-              </div>
-              <ArrowRight
-                size={20}
-                className="absolute right-5 transition duration-300 -translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0"
-              />
-            </Button>
+            <CartDrawer />
           </div>
         </div>
       </Container>
